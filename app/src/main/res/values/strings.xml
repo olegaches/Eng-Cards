@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Eng Cards</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="home_fragment_label">Home Fragment</string>
+</resources>
