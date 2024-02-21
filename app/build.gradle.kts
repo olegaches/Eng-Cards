@@ -3,6 +3,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
     kotlin("plugin.serialization")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -11,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.olegaches.engcards"
-        minSdk = 23
+        minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -59,20 +61,26 @@ dependencies {
     implementation("androidx.room:room-ktx:2.6.1")
     ksp("androidx.room:room-compiler:2.6.1")
 
-    // kotlin-inject
-    ksp("me.tatarka.inject:kotlin-inject-compiler-ksp:0.6.3")
+    // DataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     // compose lifecycle extensions
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
 
-    // кал
+    // Hilt
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-android-compiler:2.48")
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
 
-    implementation("me.tatarka.inject:kotlin-inject-runtime:0.6.3")
+    // LazyStack
+    implementation("io.github.hukumister:lazycardstack:0.0.1")
+
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
@@ -86,4 +94,8 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.7.0-alpha02")
     debugImplementation("androidx.compose.ui:ui-tooling:1.7.0-alpha02")
     debugImplementation("androidx.compose.ui:ui-test-manifest:1.7.0-alpha02")
+}
+
+kapt {
+    correctErrorTypes = true
 }
