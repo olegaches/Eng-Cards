@@ -1,4 +1,4 @@
-package com.olegaches.engcards.fragment
+package com.olegaches.engcards.fragment.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -58,6 +58,8 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.haroncode.lazycardstack.LazyCardStack
 import com.haroncode.lazycardstack.LazyCardStackState
 import com.haroncode.lazycardstack.items
@@ -76,6 +78,7 @@ class HomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         val composeView = view.findViewById<ComposeView>(R.id.compose_view)
+        val navController = findNavController()
         composeView.apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
@@ -84,7 +87,7 @@ class HomeFragment : Fragment() {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
                     ) {
-                        HomeScreen()
+                        HomeScreen(navController)
                     }
                 }
             }
@@ -94,6 +97,7 @@ class HomeFragment : Fragment() {
 
     @Composable
     private fun HomeScreen(
+        navController: NavController,
         viewModel: HomeViewModel = hiltViewModel()
     ) {
         val state = viewModel.state.collectAsStateWithLifecycle().value
@@ -106,7 +110,7 @@ class HomeFragment : Fragment() {
             topBar = {
                 HomeTopBar(
                     onPremiumClicked = viewModel::showPremiumAd,
-                    onSettingsClicked = { TODO() },
+                    onSettingsClicked = { navController.navigate(R.id.SettingsFragment) },
                     onWordCardListClicked = { TODO() }
                 )
             },

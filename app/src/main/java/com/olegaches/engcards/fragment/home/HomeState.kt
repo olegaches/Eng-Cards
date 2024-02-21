@@ -1,4 +1,4 @@
-package com.olegaches.engcards.fragment
+package com.olegaches.engcards.fragment.home
 
 import com.olegaches.engcards.domain.model.WordCard
 
