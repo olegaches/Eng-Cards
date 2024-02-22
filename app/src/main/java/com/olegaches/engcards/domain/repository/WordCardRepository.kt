@@ -5,4 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface WordCardRepository {
     fun getRandomCardList(size: Int): Flow<List<WordCard>>
+
+    fun getCardList(query: String?): Flow<List<WordCard>>
 }

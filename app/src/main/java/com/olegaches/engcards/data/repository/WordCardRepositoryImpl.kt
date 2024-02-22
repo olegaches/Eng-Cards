@@ -20,4 +20,16 @@ class WordCardRepositoryImpl @Inject constructor(
             emit(wordCardDao.getRandomList(size).map { it.toWordCard() })
         }.flowOn(ioDispatcher)
     }
+
+    override fun getCardList(query: String?): Flow<List<WordCard>> {
+        return flow {
+            val cardList = if(query == null) {
+                wordCardDao.getAllItems()
+            } else {
+                wordCardDao.searchByQuery(query)
+            }.map { it.toWordCard() }
+
+            emit(cardList)
+        }.flowOn(ioDispatcher)
+    }
 }

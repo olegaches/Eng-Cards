@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_HomeFragment_to_SettingsFragment"
             app:destination="@id/SettingsFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_SavedCardsFragment"
+            app:destination="@id/SavedCardsFragment" />
     </fragment>
 
     <fragment
@@ -21,4 +24,12 @@
         android:label="@string/settings_fragment_label"
         tools:layout="@layout/fragment_settings">
     </fragment>
+
+    <fragment
+        android:id="@+id/SavedCardsFragment"
+        android:name="com.olegaches.engcards.fragment.saved_cards.SavedCardsFragment"
+        android:label="@string/saved_cards_fragment_label"
+        tools:layout="@layout/fragment_saved_cards">
+    </fragment>
+
 </navigation>
