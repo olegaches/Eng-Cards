@@ -234,7 +234,7 @@ class HomeFragment : Fragment() {
         ) {
             items(
                 items = cards,
-                key = { card -> card.word }
+                key = { card -> card.id }
             ) { card ->
                 var rotated by rememberSaveable { mutableStateOf(false) }
                 val rotation by animateFloatAsState(

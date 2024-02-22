@@ -34,7 +34,8 @@ class NewWordCardViewModel @Inject constructor(
             createWordCardUseCase(
                 WordCard(
                     word = wordState.value,
-                    nativeTranslation = nativeTranslationState.value
+                    nativeTranslation = nativeTranslationState.value,
+                    id = 0
                 )
             )
         }
