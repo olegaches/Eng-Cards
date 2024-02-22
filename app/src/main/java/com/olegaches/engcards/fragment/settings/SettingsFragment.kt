@@ -59,7 +59,7 @@ class SettingsFragment : Fragment() {
                 TopAppBar(
                     title = { Text(text = stringResource(id = R.string.settings)) },
                     navigationIcon = {
-                        IconButton(onClick = { navController.navigateUp() }) {
+                        IconButton(onClick = navController::navigateUp) {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = stringResource(R.string.back)
@@ -76,7 +76,7 @@ class SettingsFragment : Fragment() {
             ) {
                 Button(
                     modifier = Modifier.align(Alignment.Center),
-                    onClick = { viewModel.wipeSettings() }
+                    onClick = viewModel::wipeSettings
                 ) {
                     Text(
                         text = stringResource(R.string.wipe_settings)

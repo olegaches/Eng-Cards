@@ -111,7 +111,7 @@ class HomeFragment : Fragment() {
                 HomeTopBar(
                     onPremiumClicked = viewModel::showPremiumAd,
                     onSettingsClicked = { navController.navigate(R.id.SettingsFragment) },
-                    onWordCardListClicked = { TODO() }
+                    onWordCardListClicked = { navController.navigate(R.id.SavedCardsFragment) }
                 )
             },
             floatingActionButton = {
@@ -185,7 +185,7 @@ class HomeFragment : Fragment() {
             onDismissRequest = onDismiss,
             confirmButton = {
                 Button(
-                    onClick = { onConfirm() }
+                    onClick = onConfirm
                 ) {
                     Text(
                         text = stringResource(R.string.buy)
@@ -194,7 +194,7 @@ class HomeFragment : Fragment() {
             },
             dismissButton = {
                 Button(
-                    onClick = { onDismiss() }
+                    onClick = onDismiss
                 ) {
                     Text(
                         text = stringResource(R.string.decline)
@@ -211,13 +211,15 @@ class HomeFragment : Fragment() {
         onSettingsClicked: () -> Unit,
         onWordCardListClicked: () -> Unit
     ) {
+        val primaryColor = MaterialTheme.colorScheme.primary
+        val onPrimaryColor = MaterialTheme.colorScheme.onPrimary
         CenterAlignedTopAppBar(
             colors = TopAppBarColors(
-                containerColor = MaterialTheme.colorScheme.primary,
-                actionIconContentColor = MaterialTheme.colorScheme.onPrimary,
-                navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
-                scrolledContainerColor = MaterialTheme.colorScheme.primary,
-                titleContentColor = MaterialTheme.colorScheme.onPrimary
+                containerColor = primaryColor,
+                actionIconContentColor = onPrimaryColor,
+                navigationIconContentColor = onPrimaryColor,
+                scrolledContainerColor = primaryColor,
+                titleContentColor = onPrimaryColor
             ),
             title = {
                 Text(
@@ -225,7 +227,7 @@ class HomeFragment : Fragment() {
                 )
             },
             navigationIcon = {
-                IconButton(onClick = { onWordCardListClicked() }) {
+                IconButton(onClick = onWordCardListClicked) {
                     Icon(
                         painter = painterResource(id = R.drawable.book_icon_24),
                         contentDescription = stringResource(R.string.your_card_list)
@@ -251,11 +253,11 @@ class HomeFragment : Fragment() {
                     ) {
                         DropdownMenuItem(
                             text = { Text(stringResource(R.string.settings)) },
-                            onClick = { onSettingsClicked() }
+                            onClick = onSettingsClicked
                         )
                         DropdownMenuItem(
                             text = { Text(stringResource(R.string.premium)) },
-                            onClick = { onPremiumClicked() }
+                            onClick = onPremiumClicked
                         )
                     }
                 }
@@ -348,7 +350,7 @@ class HomeFragment : Fragment() {
                                 style = MaterialTheme.typography.titleLarge
                             )
                             Spacer(modifier = Modifier.height(25.dp))
-                            OutlinedButton(onClick = { onPlayAgainClicked() }) {
+                            OutlinedButton(onClick = onPlayAgainClicked) {
                                 Text(stringResource(R.string.play_again))
                             }
                         }

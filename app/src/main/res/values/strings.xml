@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Eng Cards</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="home_fragment_label">Home Fragment</string>
     <string name="settings_fragment_label">Settings Fragment</string>
+    <string name="saved_cards_fragment_label">Saved Cards Fragment</string>
     <string name="the_end">Конец</string>
     <string name="play_again">Сыграть снова</string>
     <string name="your_card_list">Список ваших карточек</string>
@@ -15,4 +15,5 @@
     <string name="premium_ad_text">Предлагаем вам приобрести подписку на приложение.</string>
     <string name="wipe_settings">Обнулить настройки</string>
     <string name="back">Назад</string>
+    <string name="search">Поиск</string>
 </resources>

@@ -12,6 +12,12 @@ abstract class WordCardDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun insert(wordCard: WordCardEntity)
 
+    @Query("SELECT * FROM $TABLE_NAME")
+    abstract fun getAllItems(): List<WordCardEntity>
+
+    @Query("SELECT * FROM $TABLE_NAME WHERE word LIKE '%' || :query || '%' OR nativeTranslation LIKE '%' || :query || '%'")
+    abstract fun searchByQuery(query: String): List<WordCardEntity>
+
     suspend fun insertWithTimestamp(wordCard: WordCardEntity) {
         insert(wordCard.copy(timestamp = System.currentTimeMillis()))
     }
