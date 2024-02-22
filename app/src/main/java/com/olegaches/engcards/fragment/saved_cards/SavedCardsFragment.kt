@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -16,11 +18,14 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FabPosition
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -50,6 +55,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.olegaches.engcards.R
 import com.olegaches.engcards.domain.model.WordCard
+import com.olegaches.engcards.fragment.components.PremiumAdDialog
 import com.olegaches.engcards.ui.theme.EngCardsTheme
 
 class SavedCardsFragment : Fragment() {
@@ -77,6 +83,13 @@ class SavedCardsFragment : Fragment() {
         viewModel: SavedCardsViewModel = hiltViewModel()
     ) {
         val state = viewModel.state.collectAsStateWithLifecycle().value
+        if (state.showPremiumAd) {
+            PremiumAdDialog(
+                title = stringResource(R.string.addition_attempts_limit),
+                onDismiss = viewModel::dismissPremiumAd,
+                onConfirm = viewModel::onActivatePremium,
+            )
+        }
         Scaffold(
             topBar = {
                 TopBar(
@@ -85,6 +98,21 @@ class SavedCardsFragment : Fragment() {
                     onQueryChanged = viewModel::onQueryChanged,
                     onBackIconClicked = navController::navigateUp
                 )
+            },
+            floatingActionButtonPosition = FabPosition.End,
+            floatingActionButton = {
+                Column {
+                    FloatingActionButton(onClick = {
+                        if (viewModel.onRequireTranslation())
+                            navController.navigate(R.id.NewWordCardFragment)
+                    }) {
+                        Icon(
+                            imageVector = Icons.Default.Add,
+                            contentDescription = stringResource(R.string.add_new_card)
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(40.dp))
+                }
             }
         ) { paddingValues ->
             Box(
@@ -130,7 +158,6 @@ class SavedCardsFragment : Fragment() {
                     )
                 }
             },
-            actions = {},
             title = {
                 CustomSearch(
                     modifier = Modifier
