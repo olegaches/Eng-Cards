@@ -7,8 +7,44 @@
 
     <fragment
         android:id="@+id/HomeFragment"
-        android:name="com.olegaches.engcards.fragment.HomeFragment"
+        android:name="com.olegaches.engcards.fragment.home.HomeFragment"
         android:label="@string/home_fragment_label"
         tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_HomeFragment_to_SettingsFragment"
+            app:destination="@id/SettingsFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_SavedCardsFragment"
+            app:destination="@id/SavedCardsFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/SettingsFragment"
+        android:name="com.olegaches.engcards.fragment.settings.SettingsFragment"
+        android:label="@string/settings_fragment_label"
+        tools:layout="@layout/fragment_settings">
+    </fragment>
+
+    <fragment
+        android:id="@+id/SavedCardsFragment"
+        android:name="com.olegaches.engcards.fragment.saved_cards.SavedCardsFragment"
+        android:label="@string/saved_cards_fragment_label"
+        tools:layout="@layout/fragment_saved_cards">
+        <action
+            android:id="@+id/action_SavedCardsFragment_to_NewWordCardFragment"
+            app:destination="@id/NewWordCardFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/NewWordCardFragment"
+        android:name="com.olegaches.engcards.fragment.new_wordcard.NewWordCardFragment"
+        android:label="@string/new_wordcard_fragment_label"
+        tools:layout="@layout/fragment_new_wordcard">
+        <action
+            android:id="@+id/action_NewWordCardFragment_to_SavedCardsFragment"
+            app:popUpTo="@id/SavedCardsFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/SavedCardsFragment" />
+    </fragment>
+
 </navigation>

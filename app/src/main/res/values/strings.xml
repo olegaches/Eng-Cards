@@ -1,5 +1,26 @@
 <resources>
     <string name="app_name">Eng Cards</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="home_fragment_label">Home Fragment</string>
+    <string name="settings_fragment_label">Settings Fragment</string>
+    <string name="new_wordcard_fragment_label">New Word Card Fragment</string>
+    <string name="saved_cards_fragment_label">Saved Cards Fragment</string>
+    <string name="the_end">Конец</string>
+    <string name="play_again">Сыграть снова</string>
+    <string name="your_card_list">Список ваших карточек</string>
+    <string name="settings">Настройки</string>
+    <string name="premium">Премиум</string>
+    <string name="next_card">Следующая карточка</string>
+    <string name="buy">Купить</string>
+    <string name="decline">Нет, спасибо</string>
+    <string name="translation_attempts_limit">Бесплатные попытки перевода кончились</string>
+    <string name="addition_attempts_limit">Бесплатные добавления слов кончились</string>
+    <string name="premium_ad_text">Предлагаем вам приобрести подписку на приложение.</string>
+    <string name="wipe_settings">Обнулить настройки</string>
+    <string name="back">Назад</string>
+    <string name="search">Поиск</string>
+    <string name="add">Добавить</string>
+    <string name="add_new_card">добавить карточку</string>
+    <string name="word">Слово</string>
+    <string name="translation">Перевод слова</string>
+    <string name="cancel">Отмена</string>
 </resources>
