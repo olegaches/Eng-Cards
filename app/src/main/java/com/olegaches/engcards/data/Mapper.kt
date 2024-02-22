@@ -9,3 +9,10 @@ fun WordCardEntity.toWordCard(): WordCard {
         nativeTranslation = nativeTranslation
     )
 }
+
+fun WordCard.toWordCardEntity(): WordCardEntity {
+    return WordCardEntity(
+        word = word,
+        nativeTranslation = nativeTranslation
+    )
+}

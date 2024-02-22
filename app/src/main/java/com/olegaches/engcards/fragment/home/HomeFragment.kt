@@ -18,8 +18,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
@@ -67,6 +65,7 @@ import com.haroncode.lazycardstack.rememberLazyCardStackState
 import com.haroncode.lazycardstack.swiper.SwipeDirection
 import com.olegaches.engcards.R
 import com.olegaches.engcards.domain.model.WordCard
+import com.olegaches.engcards.fragment.components.PremiumAdDialog
 import com.olegaches.engcards.ui.theme.EngCardsTheme
 import kotlinx.coroutines.launch
 
@@ -109,7 +108,6 @@ class HomeFragment : Fragment() {
         Scaffold(
             topBar = {
                 HomeTopBar(
-                    onPremiumClicked = viewModel::showPremiumAd,
                     onSettingsClicked = { navController.navigate(R.id.SettingsFragment) },
                     onWordCardListClicked = { navController.navigate(R.id.SavedCardsFragment) }
                 )
@@ -165,49 +163,9 @@ class HomeFragment : Fragment() {
         }
     }
 
-    @Composable
-    private fun PremiumAdDialog(
-        title: String,
-        onDismiss: () -> Unit,
-        onConfirm: () -> Unit,
-    ) {
-        AlertDialog(
-            title = {
-                Text(
-                    text = title
-                )
-            },
-            text = {
-                Text(
-                    stringResource(R.string.premium_ad_text)
-                )
-            },
-            onDismissRequest = onDismiss,
-            confirmButton = {
-                Button(
-                    onClick = onConfirm
-                ) {
-                    Text(
-                        text = stringResource(R.string.buy)
-                    )
-                }
-            },
-            dismissButton = {
-                Button(
-                    onClick = onDismiss
-                ) {
-                    Text(
-                        text = stringResource(R.string.decline)
-                    )
-                }
-            }
-        )
-    }
-
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     private fun HomeTopBar(
-        onPremiumClicked: () -> Unit,
         onSettingsClicked: () -> Unit,
         onWordCardListClicked: () -> Unit
     ) {
@@ -254,10 +212,6 @@ class HomeFragment : Fragment() {
                         DropdownMenuItem(
                             text = { Text(stringResource(R.string.settings)) },
                             onClick = onSettingsClicked
-                        )
-                        DropdownMenuItem(
-                            text = { Text(stringResource(R.string.premium)) },
-                            onClick = onPremiumClicked
                         )
                     }
                 }
